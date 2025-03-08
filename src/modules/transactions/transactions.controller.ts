@@ -19,10 +19,7 @@ import { ActiveUserId } from 'src/shared/decorators/ActiveUserId';
 import { OptionalParseUUIDPipe } from 'src/shared/pipes/OptionalParseUUIDPipe';
 import { TransactionType } from './entities/Transaction';
 import { OptionalParseEnumPipe } from 'src/shared/pipes/OptionalParseEnumPipe';
-<<<<<<< HEAD
 import { CreateTransferDto } from './dto/create-transfer.dto';
-=======
->>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
 
 @Controller('transactions')
 export class TransactionsController {
@@ -36,7 +33,6 @@ export class TransactionsController {
     return this.transactionsService.create(userId, createTransactionDto);
   }
 
-<<<<<<< HEAD
   @Post('transfer')
   async transfer(
     @ActiveUserId() userId: string,
@@ -46,8 +42,6 @@ export class TransactionsController {
     return this.transactionsService.transferFunds(userId, transferDto);
   }
 
-=======
->>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
   @Get()
   findAll(
     @ActiveUserId() userId: string,

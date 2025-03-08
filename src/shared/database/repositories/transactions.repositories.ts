@@ -15,13 +15,10 @@ export class TransactionsRepository {
     return this.prismaService.transaction.findFirst(findFirstDto);
   }
 
-<<<<<<< HEAD
   findUnique(findFirstDto: Prisma.TransactionFindUniqueArgs) {
     return this.prismaService.transaction.findUnique(findFirstDto);
   }
 
-=======
->>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
   create(createDto: Prisma.TransactionCreateArgs) {
     return this.prismaService.transaction.create(createDto);
   }

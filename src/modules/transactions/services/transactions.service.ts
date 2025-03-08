@@ -6,27 +6,20 @@ import { ValidateBankAccountOwnershipService } from '../../bank-accounts/service
 import { ValidateCategoryOwnershipService } from '../../categories/services/validate-category-ownership.service';
 import { ValidateTransactionOwnershipService } from './validate-transaction-ownership.service';
 import { TransactionType } from '../entities/Transaction';
-<<<<<<< HEAD
 import { BankAccountsRepository } from 'src/shared/database/repositories/bank-accounts.repositories';
 import { Prisma } from '@prisma/client';
 import { CreateTransferDto } from '../dto/create-transfer.dto';
-=======
->>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
 
 @Injectable()
 export class TransactionsService {
   constructor(
     private readonly transactionsRepo: TransactionsRepository,
-<<<<<<< HEAD
     private readonly bankAccountsRepo: BankAccountsRepository,
-=======
->>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
     private readonly validateBankAccountOwnershipService: ValidateBankAccountOwnershipService,
     private readonly validateCategoryOwnershipService: ValidateCategoryOwnershipService,
     private readonly validateTransactionOwnershipService: ValidateTransactionOwnershipService,
   ) {}
 
-<<<<<<< HEAD
   // @Cron('')
   // async processScheduledTransactions() {
   //   const today = new Date();
@@ -48,8 +41,6 @@ export class TransactionsService {
   //   }
   // }
 
-=======
->>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
   async create(userId: string, createTransactionDto: CreateTransactionDto) {
     const { bankAccountId, categoryId, date, name, type, value } =
       createTransactionDto;
@@ -73,7 +64,6 @@ export class TransactionsService {
     });
   }
 
-<<<<<<< HEAD
   async transferFunds(
     userId: string,
     {
@@ -163,8 +153,6 @@ export class TransactionsService {
     };
   }
 
-=======
->>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
   findAllByUserId(
     userId: string,
     filters: {

@@ -9,10 +9,7 @@ import {
   ParseUUIDPipe,
   HttpCode,
   HttpStatus,
-<<<<<<< HEAD
   Query,
-=======
->>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
 } from '@nestjs/common';
 import { BankAccountsService } from './services/bank-accounts.service';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
@@ -36,19 +33,17 @@ export class BankAccountsController {
     return this.bankAccountsService.findAllByUserId(userId);
   }
 
-<<<<<<< HEAD
   @Get('key')
   findBankAccoutByKey(
     // @ActiveUserId() userId: string,
     @Query('bankAccountKey') bankAccountKey: string,
   ) {
     return this.bankAccountsService.findBankAccoutByKey(bankAccountKey);
-=======
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bankAccountsService.findOne(+id);
->>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
   }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.bankAccountsService.findOne(+id);
+  // }
 
   @Put(':bankAccountId')
   update(
