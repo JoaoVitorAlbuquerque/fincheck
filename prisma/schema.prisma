@@ -37,7 +37,10 @@ model BankAccount {
   name           String
   initialBalance Float           @map("initial_balance")
   type           BankAccountType
+<<<<<<< HEAD
   bankAccountKey String          @unique @map("bank_account_key")
+=======
+>>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
   color          String
   transactions   Transaction[]
 
@@ -49,7 +52,10 @@ model BankAccount {
 enum TransactionType {
   INCOME
   EXPENSE
+<<<<<<< HEAD
   TRANSFER
+=======
+>>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
 
   @@map("transaction_type")
 }
@@ -76,7 +82,10 @@ model Transaction {
   value         Float
   date          DateTime
   type          TransactionType
+<<<<<<< HEAD
   isTransfer    Boolean?        @default(false) @map("is_transfer")
+=======
+>>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
 
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   bankAccount BankAccount @relation(fields: [bankAccountId], references: [id], onDelete: Cascade)

@@ -11,6 +11,7 @@ export class BankAccountsService {
     private readonly validateBankAccountOwnershipService: ValidateBankAccountOwnershipService,
   ) {}
 
+<<<<<<< HEAD
   private generateBankAccountKey(): string {
     const numbers = '0123456789';
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -30,12 +31,19 @@ export class BankAccountsService {
       createBankAccountDto;
 
     const key = this.generateBankAccountKey();
+=======
+  create(userId: string, createBankAccountDto: CreateBankAccountDto) {
+    const { color, initialBalance, name, type } = createBankAccountDto;
+>>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
 
     return this.bankAccountsRepo.create({
       data: {
         userId,
         color,
+<<<<<<< HEAD
         bankAccountKey: key,
+=======
+>>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
         initialBalance,
         name,
         type,
@@ -76,6 +84,7 @@ export class BankAccountsService {
     });
   }
 
+<<<<<<< HEAD
   async findBankAccoutByKey(bankAccountKey: string) {
     const bankAccount = await this.bankAccountsRepo.findFirst({
       where: { bankAccountKey },
@@ -90,6 +99,10 @@ export class BankAccountsService {
     });
 
     return bankAccount;
+=======
+  findOne(id: number) {
+    return `This action returns a #${id} bankAccount`;
+>>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
   }
 
   async update(

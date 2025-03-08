@@ -17,10 +17,13 @@ export class BankAccountsRepository {
     return this.prismaService.bankAccount.findFirst(findFirstDto);
   }
 
+<<<<<<< HEAD
   findUnique(findUniqueDto: Prisma.BankAccountFindUniqueArgs) {
     return this.prismaService.bankAccount.findUnique(findUniqueDto);
   }
 
+=======
+>>>>>>> c6d1f2aa1f9a697bf3db1397c23395563b1f7dfb
   create(createDto: Prisma.BankAccountCreateArgs) {
     return this.prismaService.bankAccount.create(createDto);
   }
