@@ -77,6 +77,8 @@ model Transaction {
   date          DateTime
   type          TransactionType
   isTransfer    Boolean?        @default(false) @map("is_transfer")
+  pdfUrl        String?         @map("pdf_url")
+  paymentId     String?         @map("payment_id")
 
   user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   bankAccount BankAccount @relation(fields: [bankAccountId], references: [id], onDelete: Cascade)

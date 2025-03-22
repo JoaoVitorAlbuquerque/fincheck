@@ -39,7 +39,12 @@ export class TransactionsController {
     @Body()
     transferDto: CreateTransferDto,
   ) {
-    return this.transactionsService.transferFunds(userId, transferDto);
+    const paymentUuid = crypto.randomUUID();
+    console.log(paymentUuid);
+    return this.transactionsService.transferFunds(userId, {
+      paymentId: paymentUuid,
+      ...transferDto,
+    });
   }
 
   @Get()
@@ -57,6 +62,14 @@ export class TransactionsController {
       bankAccountId,
       type,
     });
+  }
+
+  @Put('file')
+  findFileFromS3(
+    @ActiveUserId() userId: string,
+    @Body() body: { fileName: string },
+  ) {
+    return this.transactionsService.getFileFromS3(userId, body.fileName);
   }
 
   @Put(':transactionId')

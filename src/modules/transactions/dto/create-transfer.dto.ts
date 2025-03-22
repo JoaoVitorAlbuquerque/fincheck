@@ -36,4 +36,9 @@ export class CreateTransferDto {
   @IsBoolean()
   @IsOptional()
   isTransfer: boolean;
+
+  @IsString()
+  @IsOptional()
+  // @IsUUID()
+  paymentId: string;
 }
