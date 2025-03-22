@@ -20,6 +20,7 @@ import { OptionalParseUUIDPipe } from 'src/shared/pipes/OptionalParseUUIDPipe';
 import { TransactionType } from './entities/Transaction';
 import { OptionalParseEnumPipe } from 'src/shared/pipes/OptionalParseEnumPipe';
 import { CreateTransferDto } from './dto/create-transfer.dto';
+import * as crypto from 'node:crypto';
 
 @Controller('transactions')
 export class TransactionsController {
