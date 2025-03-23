@@ -140,9 +140,14 @@ export class TransactionsService {
       throw new Error('Conta de destino não encontrada.');
     }
 
+    const [fromBankAccountName, toBankAccountName] = await Promise.all([
+      this.bankAccountsRepo.findFirst({ where: { id: fromBankAccountId } }),
+      this.bankAccountsRepo.findFirst({ where: { id: toBankAccountId } }),
+    ]);
+
     const pdfBuffer = await this.generateTransferPDF({
-      fromBankAccountId,
-      toBankAccountId,
+      fromBankAccountId: fromBankAccountName.name,
+      toBankAccountId: toBankAccountName.name,
       amount,
       date,
       name,
@@ -323,84 +328,6 @@ export class TransactionsService {
     toBankAccountId,
     paymentId,
   }: CreateTransferDto): Promise<Buffer> {
-    // const pdfDoc = await PDFDocument.create();
-    // const page = pdfDoc.addPage([600, 800]);
-
-    // // const logoPath = path.resolve(__dirname, '');
-    // // const logoBytes = fs.readFileSync(logoPath);
-    // // const logoImage = await pdfDoc.embedPng(logoBytes);
-
-    // // Dimensões da logo
-    // // const logoWidth = 100;
-    // // const logoHeight = 50;
-
-    // // Adicionar a logo ao PDF
-    // // page.drawImage(logoImage, {
-    // //   x: 20, // Distância da esquerda
-    // //   y: 350, // Posição vertical
-    // //   width: logoWidth,
-    // //   height: logoHeight,
-    // // });
-
-    // // Adicionar uma linha horizontal abaixo da logo
-    // page.drawLine({
-    //   start: { x: 20, y: 330 }, // Começa abaixo da logo
-    //   end: { x: 580, y: 330 }, // Vai até a outra extremidade
-    //   thickness: 1, // Espessura da linha
-    //   color: rgb(0, 0, 0), // Preto
-    // });
-
-    // // Adicionar detalhes da transação
-    // // page.drawText(`Comprovante de Transferência`, { x: 20, y: 310, size: 14 });
-    // page.drawText(`Comprovante de Transferência`, { x: 20, y: 350, size: 16 });
-    // page.drawText(`${Date.now()}`, { x: 20, y: 340, size: 12 });
-
-    // page.drawText(`ID da transação: ${paymentId}`, {
-    //   x: 20,
-    //   y: 280,
-    //   size: 12,
-    // });
-    // page.drawText(`Data: ${date}`, { x: 20, y: 260, size: 12 });
-    // page.drawText(`Valor: R$ ${amount.toFixed(2)}`, {
-    //   x: 20,
-    //   y: 240,
-    //   size: 12,
-    // });
-    // page.drawText(`De: Conta ${fromBankAccountId}`, {
-    //   x: 20,
-    //   y: 220,
-    //   size: 12,
-    // });
-    // page.drawText(`Para: Conta ${toBankAccountId}`, {
-    //   x: 20,
-    //   y: 200,
-    //   size: 12,
-    // });
-
-    // page.drawText(`Descrição: ${name}`, {
-    //   x: 20,
-    //   y: 180,
-    //   size: 12,
-    // });
-
-    // /// Gerar o PDF como Uint8Array
-    // const pdfBytes = await pdfDoc.save();
-    // // const pdfBuffer = Buffer.from(pdfBytes); // Convertendo para Buffer
-
-    // // Criar um diretório temporário para armazenar o PDF
-    // const dir = path.resolve(__dirname, '..', 'tmp');
-    // if (!fs.existsSync(dir)) {
-    //   fs.mkdirSync(dir, { recursive: true });
-    // }
-
-    // // Caminho onde o arquivo será salvo temporariamente
-    // const filePath = path.join(dir, `${paymentId}.pdf`);
-
-    // // Salvar o PDF localmente antes do upload
-    // fs.writeFileSync(filePath, pdfBytes);
-
-    // return filePath; // Retorna o caminho do arquivo gerado
-
     return new Promise((resolve, reject) => {
       const doc = new PDFDocument();
       const buffers: Buffer[] = [];
@@ -416,8 +343,8 @@ export class TransactionsService {
         .text('financeX', { align: 'center' });
 
       // ✅ **Linha horizontal separando o cabeçalho**
-      doc.moveDown(3);
-      doc.moveTo(50, 80).lineTo(550, 80).stroke();
+      // doc.moveDown(3);
+      // doc.moveTo(50, 80).lineTo(550, 80).stroke();
 
       // ✅ **Adicionar título**
       doc
